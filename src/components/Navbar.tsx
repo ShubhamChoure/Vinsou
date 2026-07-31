@@ -2,12 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, PhoneCall } from "lucide-react";
 import { Dancing_Script } from "next/font/google";
 
 const scriptFont = Dancing_Script({ subsets: ["latin"], weight: ["400"] });
 
-const Navbar = () => {
+interface NavbarProps {
+  onBookCall?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -20,10 +24,19 @@ const Navbar = () => {
     { title: "Blog", href: "/blog" },
   ];
 
+  const handleButtonClick = () => {
+    if (onBookCall) {
+      onBookCall();
+    } else {
+      window.location.href = "https://calendly.com/official-vinsou/30min";
+    }
+  };
+
   return (
     <>
       <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[120]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
+          
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-1 select-none relative z-[130]">
             <span className="text-xl md:text-2xl font-black italic tracking-tighter text-black uppercase leading-none">Ads</span>
@@ -40,8 +53,14 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-            <button className="bg-[#FFCC00] hover:bg-[#F0C000] text-black font-bold rounded-full px-8 py-3 text-sm uppercase tracking-wide shadow-sm transition-all active:scale-95">
-              Book a Call
+            
+            {/* CTA BUTTON */}
+            <button
+              onClick={handleButtonClick}
+              className="group relative inline-flex items-center gap-2.5 bg-[#FFCC00] hover:bg-[#F0C000] text-black font-bold rounded-full px-7 py-3 text-sm uppercase tracking-wide shadow-sm transition-all active:scale-95 cursor-pointer"
+            >
+              <span>Book a Call</span>
+              <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
             </button>
           </div>
 
@@ -60,7 +79,16 @@ const Navbar = () => {
               {link.title}
             </Link>
           ))}
-          <button className="w-full bg-[#FFCC00] text-black font-bold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4">Book a Call</button>
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              handleButtonClick();
+            }}
+            className="group w-full inline-flex items-center justify-center gap-2.5 bg-[#FFCC00] text-black font-bold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4 cursor-pointer"
+          >
+            <span>Book a Call</span>
+            <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
+          </button>
         </div>
       </div>
       {isOpen && <div className="fixed inset-0 bg-black/40 z-[110] md:hidden backdrop-blur-[2px]" onClick={() => setIsOpen(false)} />}

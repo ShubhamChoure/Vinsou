@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, PhoneCall } from "lucide-react";
 
 const InstagramIcon = () => (
   <svg
@@ -29,7 +29,11 @@ const LeafSVG = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const Hero = () => {
+interface HeroProps {
+  onBookCall?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   const healthcareTargets = ["Doctors", "Clinics", "Hospitals", "Practices"];
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
@@ -46,8 +50,16 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, [healthcareTargets.length]);
 
+  const handleButtonClick = () => {
+    if (onBookCall) {
+      onBookCall();
+    } else {
+      window.location.href = "https://calendly.com/official-vinsou/30min";
+    }
+  };
+
   return (
-    <section className="relative w-full overflow-hidden bg-[#FAF8F5] font-sans pt-2 sm:pt-4 pb-4 lg:pb-12 min-h-0 lg:min-h-[calc(100vh-70px)] flex items-start lg:items-center">
+    <section className="relative w-full overflow-hidden bg-[#FAF8F5] font-sans pt-2 sm:pt-4 pb-8 lg:pb-12 min-h-0 lg:min-h-[calc(100vh-70px)] flex items-start lg:items-center">
       
       {/* 1. BACKGROUND LEAF WATERMARK */}
       <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
@@ -103,15 +115,19 @@ const Hero = () => {
               and connect with patients through customized digital solutions.
             </p>
 
-            <button className="bg-[#FFCC00] text-black font-extrabold rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-[13px] sm:text-[14px] uppercase tracking-wider shadow-md hover:bg-[#f2c200] transition-all active:scale-95">
-              Book a Call
+            {/* HERO CTA BUTTON */}
+            <button 
+              onClick={handleButtonClick}
+              className="group relative inline-flex items-center gap-3 bg-[#FFCC00] text-black font-extrabold rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-[13px] sm:text-[14px] uppercase tracking-wider shadow-md hover:bg-[#f2c200] hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+            >
+              <span>Book a Call</span>
+              <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
             </button>
           </div>
 
-          {/* TEAM PHOTO (Low opacity backdrop on Mobile/Tab, Full on Desktop) */}
+          {/* TEAM PHOTO */}
           <div className="absolute inset-0 lg:relative lg:inset-auto flex items-end justify-end z-10 pointer-events-none lg:pointer-events-auto">
             <div className="relative w-full h-full lg:h-[620px] max-w-full lg:max-w-[520px] opacity-15 lg:opacity-100 transition-opacity duration-300">
-              {/* DESKTOP SHADOW */}
               <div className="hidden lg:block absolute -right-2 bottom-0 w-full h-full opacity-30 blur-[6px] pointer-events-none select-none z-0">
                 <Image
                   src="/hero.png"
@@ -121,7 +137,6 @@ const Hero = () => {
                   aria-hidden="true"
                 />
               </div>
-              {/* FOREGROUND IMAGE */}
               <Image
                 src="/hero.png"
                 alt="Ads With Vinsou Team"

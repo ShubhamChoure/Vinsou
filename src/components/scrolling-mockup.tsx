@@ -9,9 +9,9 @@ interface ScrollingMockupProps {
 
 export const ScrollingMockup = ({ imageSrc }: ScrollingMockupProps) => {
   return (
-    <div className="relative w-full max-w-[260px] mx-auto aspect-[9/18.5] group cursor-pointer">
+    <div className="relative w-full max-w-[280px] mx-auto aspect-[9/18.5] group cursor-pointer select-none">
       
-      {/* 1. Phone Frame SVG Overlay (Highest Z-index) */}
+      {/* 1. Phone Frame SVG Overlay */}
       <div className="absolute inset-0 z-40 pointer-events-none">
         <Image 
           src="/mobile-mockup.svg" 
@@ -22,38 +22,26 @@ export const ScrollingMockup = ({ imageSrc }: ScrollingMockupProps) => {
       </div>
 
       {/* 2. The Screen Container */}
-      <div className="absolute inset-[2.5%] z-10 overflow-hidden rounded-[2.2rem] md:rounded-[2.6rem] bg-black">
+      <div className="absolute inset-[2.8%] z-10 overflow-hidden rounded-[2.2rem] md:rounded-[2.6rem] bg-black">
         
-        {/* BLACK STATUS BAR / NOTCH AREA */}
-        {/* This stays fixed at the top and hides the image behind it */}
-        <div className="absolute top-0 left-0 w-full h-7 md:h-9 bg-black z-30 flex items-center justify-center">
-            {/* Subtle notch detail */}
-            <div className="w-16 h-1 bg-white/10 rounded-full mt-1" />
+        {/* Fixed Top Status Bar / Notch */}
+        <div className="absolute top-0 left-0 w-full h-8 md:h-9 bg-black z-30 flex items-center justify-center">
+          <div className="w-16 h-1 bg-white/20 rounded-full mt-1" />
         </div>
 
-        {/* 3. The Actual Scrolling Content Area */}
-        {/* We push this area down by h-7/h-9 so the image starts below the black area */}
-        <div className="absolute top-7 md:top-9 bottom-0 left-0 right-0 overflow-hidden">
+        {/* 3. Auto-Scrolling Image Container */}
+        <div className="absolute top-8 md:top-9 bottom-0 left-0 right-0 overflow-hidden">
           <Image
             src={imageSrc}
-            alt="Portfolio Screenshot"
+            alt="Portfolio Showcase"
             width={400}
-            height={1500}
-            className="absolute top-0 left-0 w-full h-auto transition-transform duration-[7000ms] ease-in-out transform translate-y-0 group-hover:-translate-y-[calc(100%-100%)]"
+            height={2000}
+            className="absolute top-0 left-0 w-full h-auto transition-transform duration-[6000ms] ease-in-out group-hover:-translate-y-[calc(100%-420px)]"
             priority
           />
         </div>
       </div>
 
-      <style jsx>{`
-        /* 
-           This CSS ensures the image scrolls to the very bottom 
-           regardless of the image's total height.
-        */
-        .group:hover img {
-          transform: translateY(calc(-100% + 100%)) !important;
-        }
-      `}</style>
     </div>
   );
 };
