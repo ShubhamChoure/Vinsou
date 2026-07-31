@@ -35,24 +35,37 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
       <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[120]">
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
           
-          {/* LOGO WITH REDIRECT TO HOMEPAGE */}
+          {/* BRAND LOGO CONTAINER */}
           <Link 
             href="/" 
             aria-label="VINSOU - Return to Homepage"
-            className="relative flex items-center justify-start overflow-visible select-none z-[130] transition-opacity hover:opacity-90 py-1"
+            className="flex items-center gap-3.5 select-none group z-[130] transition-opacity hover:opacity-90 py-1"
           >
-            <div className="relative h-12 sm:h-16 lg:h-20 w-[180px] sm:w-[240px] flex items-center justify-start">
+            {/* 1. 3D Logo Mark (site_logo.png) */}
+            <div className="relative h-10 sm:h-12 w-10 sm:w-12 shrink-0 flex items-center justify-center">
               <Image
-                src="/web_logo.png"
+                src="/site_logo.png"
+                alt="VINSOU Mark"
+                width={100}
+                height={100}
+                className="h-full w-full object-contain mix-blend-screen"
+                priority
+              />
+            </div>
+
+            {/* 2. Custom Text Wordmark (site_text.png) - Enlarged & Centered */}
+            <div className="relative h-7 sm:h-9 w-[180px] sm:w-[230px] flex items-center justify-start">
+              <Image
+                src="/site_text.png"
                 alt="VINSOU - Business Growth Partner"
                 fill
-                className="object-contain object-left scale-125 sm:scale-150 mix-blend-multiply"
+                className="object-contain object-left mix-blend-multiply"
                 priority
               />
             </div>
           </Link>
 
-          {/* Desktop Nav Links */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
             <div className="flex items-center gap-8">
               {navLinks.map((link) => (
