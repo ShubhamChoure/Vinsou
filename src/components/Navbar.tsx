@@ -32,16 +32,17 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
   return (
     <>
-      <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[120]">
+      {/* NAVBAR: Increased to z-[140] so it ALWAYS stays on top of the mobile drawer */}
+      <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[140]">
         <div className="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-16 sm:h-20">
           
-          {/* LOGO CONTAINER: Added max-w constraint and responsive sizing */}
+          {/* LOGO CONTAINER */}
           <Link 
             href="/" 
             aria-label="VINSOU - Return to Homepage"
             className="flex items-center select-none group transition-opacity hover:opacity-80 py-2 max-w-[75vw] overflow-visible"
           >
-            {/* 1. 3D Emblem - Scaled down for mobile (h-9 w-9), large for desktop (sm:h-14 sm:w-14) */}
+            {/* 1. 3D Emblem */}
             <div className="relative h-9 w-9 sm:h-14 sm:w-14 shrink-0 z-10">
               <Image
                 src="/site_logo.png"
@@ -52,7 +53,7 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
               />
             </div>
 
-            {/* 2. Text Wordmark - Responsive width, margin, scale, and top-margin to keep perfect alignment everywhere */}
+            {/* 2. Text Wordmark */}
             <div className="relative h-9 w-[150px] sm:h-14 sm:w-[280px] flex items-center -ml-3 sm:-ml-8 mt-0.5 sm:mt-1.5 overflow-visible z-0">
               <Image
                 src="/site_text.png"
@@ -88,24 +89,25 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             </button>
           </div>
 
-          {/* Mobile Toggle */}
+          {/* Mobile Toggle: Swaps between Menu and X automatically */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden p-1 text-black relative cursor-pointer shrink-0"
+            className="md:hidden p-1 text-black relative cursor-pointer shrink-0 transition-transform active:scale-90"
             aria-label="Toggle navigation menu"
           >
-            {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}
+            {isOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Drawer */}
+      {/* MOBILE DRAWER: Kept at z-[130] so it slides nicely UNDER the navbar */}
       <div 
-        className={`fixed inset-x-0 top-0 bg-[#FAF9F6] z-[120] border-b border-black/10 shadow-2xl transform transition-transform duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-x-0 top-0 bg-[#FAF9F6] z-[130] border-b border-black/10 shadow-2xl transform transition-transform duration-500 ease-in-out md:hidden ${
           isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="pt-20 pb-8 px-8 flex flex-col gap-2">
+        {/* Added pt-24 so the links don't hide under the navbar */}
+        <div className="pt-24 pb-8 px-8 flex flex-col gap-2">
           {navLinks.map((link) => (
             <Link 
               key={link.title} 
@@ -129,9 +131,10 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
       </div>
 
+      {/* BACKDROP: Set to z-[120] */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black/40 z-[110] md:hidden backdrop-blur-[2px]" 
+          className="fixed inset-0 bg-black/40 z-[120] md:hidden backdrop-blur-[2px]" 
           onClick={() => setIsOpen(false)} 
         />
       )}
