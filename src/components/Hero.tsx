@@ -2,23 +2,44 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { MessageCircle, PhoneCall, Code2, TrendingUp, Rocket } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 
-const InstagramIcon = () => (
+// Custom Instagram Icon
+const InstagramIcon = ({ className }: { className?: string }) => (
   <svg
-    width="20"
-    height="20"
+    width="22"
+    height="22"
     viewBox="0 0 24 24"
     fill="none"
-    stroke="black"
+    stroke="currentColor"
     strokeWidth="2.2"
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden="true"
+    className={className}
   >
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
     <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+);
+
+// Official WhatsApp Icon
+const WhatsAppIcon = ({ className }: { className?: string }) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
   </svg>
 );
 
@@ -46,14 +67,15 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
+  // Smooth rotation timer with fade effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setFade(false);
+      setFade(false); // Fade out text & shrink box slightly
       setTimeout(() => {
         setIndex((prevIndex) => (prevIndex + 1) % targetSectors.length);
-        setFade(true);
-      }, 200);
-    }, 2400);
+        setFade(true); // Fade in new text & expand box dynamically
+      }, 300);
+    }, 2800);
 
     return () => clearInterval(interval);
   }, [targetSectors.length]);
@@ -67,16 +89,20 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#FAF8F5] font-sans pt-6 sm:pt-10 pb-16 sm:pb-20 lg:pb-24 min-h-0 lg:min-h-[calc(100vh-80px)] flex items-center">
+    <section className="relative w-full overflow-hidden bg-[#FAF9F6] font-sans pt-6 sm:pt-10 pb-16 sm:pb-20 lg:pb-24 min-h-0 lg:min-h-[calc(100vh-80px)] flex items-center z-0">
       
-      {/* 1. DESKTOP LEAF WATERMARK */}
+      {/* AMBIENT BACKGROUND GLOWS */}
+      <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#004DE6] rounded-full mix-blend-multiply filter blur-[120px] opacity-10 pointer-events-none z-0"></div>
+      <div className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-[#051036] rounded-full mix-blend-multiply filter blur-[150px] opacity-10 pointer-events-none z-0"></div>
+
+      {/* DESKTOP LEAF WATERMARK */}
       <div className="hidden lg:flex absolute inset-0 pointer-events-none z-0 items-center justify-center overflow-hidden">
-        <LeafSVG className="w-[540px] h-[620px] text-black" />
+        <LeafSVG className="w-[540px] h-[620px] text-[#051036] opacity-[0.03]" />
       </div>
 
-      {/* 2. SUBTLE MOBILE TEAM WATERMARK */}
+      {/* SUBTLE MOBILE TEAM WATERMARK */}
       <div className="lg:hidden absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-end justify-end">
-        <div className="relative w-full h-[75%] opacity-10 filter grayscale contrast-125">
+        <div className="relative w-full h-[75%] opacity-[0.08] filter grayscale contrast-125">
           <Image
             src="/hero.png"
             alt=""
@@ -88,80 +114,74 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
         </div>
       </div>
 
-      {/* 3. MAIN CONTENT CONTAINER */}
+      {/* MAIN CONTENT CONTAINER */}
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12">
           
           {/* LEFT COLUMN: HERO TEXT */}
-          <div className="flex flex-col items-start w-full lg:max-w-[620px] z-20">
+          <div className="flex flex-col items-start w-full lg:max-w-[640px] z-20">
             
-            <p className="text-[12px] sm:text-[14px] text-gray-600 font-bold mb-2 tracking-wider uppercase">
-              Hi, We Are Vinsou
-            </p>
+            {/* Top label */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/60 border border-black/5 shadow-sm backdrop-blur-sm mb-4 sm:mb-5">
+               <span className="w-2 h-2 rounded-full bg-[#004DE6] animate-pulse"></span>
+               <p className="text-[11px] sm:text-[13px] text-[#051036] font-bold tracking-widest uppercase">
+                 Hi, We Are Vinsou
+               </p>
+            </div>
 
-            {/* DYNAMIC HEADLINE WITH FIXED-WIDTH BADGE (STABLE UX) */}
-            <h1 className="text-[34px] sm:text-[46px] md:text-[54px] lg:text-[66px] font-extrabold text-[#0D0D0D] leading-[1.15] tracking-tight mb-5 sm:mb-6">
-              Your Trusted Growth Partner <br />
-              <span className="inline-flex items-center gap-2 sm:gap-3 mt-1.5 align-middle">
-                <span>For</span>
-                {/* FIXED MIN-WIDTH PREVENTS LAYOUT SHIFT */}
-                <span className="bg-[#FFCC00] px-3 sm:px-4 py-0.5 sm:py-1 min-w-[200px] sm:min-w-[280px] text-center inline-flex items-center justify-center rounded-[4px] transition-all duration-300 shadow-xs">
-                  <span
-                    className={`text-black font-extrabold whitespace-nowrap transition-all duration-300 transform ${
-                      fade ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
-                    }`}
-                  >
-                    {targetSectors[index]}
-                  </span>
+            {/* STACKED & RESPONSIVE HEADLINE */}
+            <h1 className="text-[34px] sm:text-[46px] md:text-[54px] lg:text-[64px] font-extrabold text-[#051036] leading-[1.1] tracking-tight mb-5 sm:mb-6">
+              Your <br />
+              Trusted Growth <br />
+              Partner For <br />
+              
+              {/* 
+                DYNAMIC FLUID BOX:
+                - Using `w-fit` so the background hugs ONLY the active word.
+                - Added `transition-all duration-300 ease-in-out` so the container width physically animates when shifting words!
+              */}
+              <span className={`relative inline-flex items-center justify-center w-fit bg-gradient-to-r from-[#004DE6] to-[#051036] shadow-[0_10px_30px_rgba(0,77,230,0.25)] px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-xl sm:rounded-2xl mt-2 sm:mt-3 transition-all duration-300 ease-in-out`}>
+                <span
+                  className={`text-white font-extrabold whitespace-nowrap transition-all duration-300 ${
+                    fade ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                  }`}
+                >
+                  {targetSectors[index]}
                 </span>
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl border border-white/20 pointer-events-none"></div>
               </span>
             </h1>
 
             {/* HIGH-IMPACT SUBHEADLINE */}
-            <p className="text-[15px] sm:text-[17px] lg:text-[18px] text-gray-800 leading-relaxed mb-6 font-medium max-w-[540px]">
-              We build <strong className="font-bold underline decoration-[#FFCC00] decoration-2 underline-offset-4">high-converting websites</strong>, execute high-ROI ad campaigns, and engineer end-to-end digital solutions that scale your revenue.
+            <p className="text-[15px] sm:text-[17px] lg:text-[18px] text-gray-700 leading-relaxed mb-8 sm:mb-9 font-medium max-w-[520px]">
+              We build <strong className="font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#004DE6] to-[#051036]">high-converting websites</strong>, execute high-ROI ad campaigns, and engineer end-to-end digital solutions that scale your revenue.
             </p>
-
-            {/* SERVICE PILL BADGES */}
-            <div className="flex flex-wrap gap-2 mb-7">
-              <span className="inline-flex items-center gap-1.5 bg-white border border-black/10 px-3.5 py-1.5 rounded-full text-xs font-bold text-gray-900 shadow-2xs hover:border-black/30 transition-colors">
-                <Code2 size={14} className="text-black" />
-                Web & Software Dev
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-white border border-black/10 px-3.5 py-1.5 rounded-full text-xs font-bold text-gray-900 shadow-2xs hover:border-black/30 transition-colors">
-                <TrendingUp size={14} className="text-black" />
-                Performance Ads
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-white border border-black/10 px-3.5 py-1.5 rounded-full text-xs font-bold text-gray-900 shadow-2xs hover:border-black/30 transition-colors">
-                <Rocket size={14} className="text-black" />
-                Brand Scaling
-              </span>
-            </div>
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap items-center gap-4">
-              {/* MAIN CTA BUTTON */}
+              {/* PRIMARY CTA BUTTON */}
               <button 
                 onClick={handleButtonClick}
-                className="group relative inline-flex items-center gap-3 bg-[#FFCC00] text-black font-extrabold rounded-full px-8 sm:px-10 py-3.5 sm:py-4 text-[13px] sm:text-[14px] uppercase tracking-wider shadow-md hover:bg-[#f2c200] hover:shadow-lg transition-all active:scale-95 cursor-pointer"
+                className="group relative inline-flex items-center gap-3 bg-[#004DE6] text-white font-extrabold rounded-full px-8 sm:px-10 py-4 text-[14px] uppercase tracking-wider shadow-[0_10px_30px_rgba(0,77,230,0.25)] hover:shadow-[0_15px_40px_rgba(0,77,230,0.4)] transition-all active:scale-95 cursor-pointer overflow-hidden"
               >
-                <span>Book a Call</span>
-                <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <span className="relative z-10">Book a Call</span>
+                <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
               </button>
 
-              {/* SOCIAL ICONS */}
-              <div className="flex gap-2.5">
+              {/* SOCIAL ICONS (Instagram & WhatsApp) */}
+              <div className="flex gap-3">
                 <button
                   aria-label="Instagram"
-                  className="w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] bg-[#FFCC00] rounded-[6px] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform cursor-pointer shadow-xs"
+                  className="w-[48px] h-[48px] bg-white text-[#004DE6] rounded-full flex items-center justify-center hover:bg-[#004DE6] hover:text-white shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(0,77,230,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
                 >
-                  <InstagramIcon />
+                  <InstagramIcon className="transition-colors duration-300" />
                 </button>
                 <button
-                  aria-label="Message"
-                  className="w-[44px] h-[44px] sm:w-[48px] sm:h-[48px] bg-[#FFCC00] rounded-[6px] flex items-center justify-center hover:scale-105 active:scale-95 transition-transform cursor-pointer shadow-xs"
+                  aria-label="WhatsApp"
+                  className="w-[48px] h-[48px] bg-white text-[#004DE6] rounded-full flex items-center justify-center hover:bg-[#004DE6] hover:text-white shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_25px_rgba(0,77,230,0.3)] hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
                 >
-                  <MessageCircle size={22} className="text-black" strokeWidth={2.2} />
+                  <WhatsAppIcon className="transition-colors duration-300" />
                 </button>
               </div>
             </div>
@@ -169,9 +189,11 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
           </div>
 
           {/* DESKTOP FULL TEAM PHOTO */}
-          <div className="hidden lg:flex w-full justify-end items-end z-10">
-            <div className="relative w-full max-w-[520px] h-[580px]">
-              <div className="absolute -right-2 bottom-0 w-full h-full opacity-25 blur-[6px] pointer-events-none select-none z-0">
+          <div className="hidden lg:flex w-full justify-end items-end z-10 relative">
+            <div className="relative w-full max-w-[540px] h-[600px]">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#004DE6] rounded-full mix-blend-multiply filter blur-[100px] opacity-10 pointer-events-none z-0"></div>
+              
+              <div className="absolute -right-2 bottom-0 w-full h-full opacity-20 blur-[8px] pointer-events-none select-none z-0">
                 <Image
                   src="/hero.png"
                   alt=""
@@ -184,7 +206,7 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
                 src="/hero.png"
                 alt="Ads With Vinsou Team"
                 fill
-                className="object-contain object-right-bottom drop-shadow-xl"
+                className="object-contain object-right-bottom drop-shadow-2xl z-10"
                 priority
               />
             </div>

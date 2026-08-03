@@ -72,27 +72,28 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
                 <Link 
                   key={link.title} 
                   href={link.href} 
-                  className="text-sm font-bold text-black hover:opacity-60 transition-opacity"
+                  className="text-sm font-bold text-[#051036] hover:opacity-60 transition-opacity"
                 >
                   {link.title}
                 </Link>
               ))}
             </div>
             
-            {/* CTA BUTTON */}
+            {/* FANCY DESKTOP CTA BUTTON (Matched Theme) */}
             <button
               onClick={handleButtonClick}
-              className="group relative inline-flex items-center gap-2.5 bg-[#FFCC00] hover:bg-[#F0C000] text-black font-extrabold rounded-full px-7 py-3 text-sm uppercase tracking-wide shadow-sm transition-all active:scale-95 cursor-pointer"
+              className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#004DE6] to-[#051036] text-white font-extrabold rounded-full px-7 py-3 text-sm uppercase tracking-wide shadow-[0_8px_25px_rgba(0,77,230,0.25)] hover:shadow-[0_12px_35px_rgba(0,77,230,0.4)] transition-all active:scale-95 cursor-pointer overflow-hidden"
             >
-              <span>Book a Call</span>
-              <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              <span className="relative z-10">Book a Call</span>
+              <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
             </button>
           </div>
 
           {/* Mobile Toggle: Swaps between Menu and X automatically */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden p-1 text-black relative cursor-pointer shrink-0 transition-transform active:scale-90"
+            className="md:hidden p-1 text-[#051036] relative cursor-pointer shrink-0 transition-transform active:scale-90"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
@@ -100,38 +101,38 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
       </nav>
 
-      {/* MOBILE DRAWER: Kept at z-[130] so it slides nicely UNDER the navbar */}
+      {/* MOBILE DRAWER */}
       <div 
         className={`fixed inset-x-0 top-0 bg-[#FAF9F6] z-[130] border-b border-black/10 shadow-2xl transform transition-transform duration-500 ease-in-out md:hidden ${
           isOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        {/* Added pt-24 so the links don't hide under the navbar */}
         <div className="pt-24 pb-8 px-8 flex flex-col gap-2">
           {navLinks.map((link) => (
             <Link 
               key={link.title} 
               href={link.href} 
               onClick={() => setIsOpen(false)} 
-              className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0"
+              className="py-4 text-[15px] font-bold text-[#051036] border-t border-black/5 first:border-t-0"
             >
               {link.title}
             </Link>
           ))}
+          {/* FANCY MOBILE CTA BUTTON */}
           <button
             onClick={() => {
               setIsOpen(false);
               handleButtonClick();
             }}
-            className="group w-full inline-flex items-center justify-center gap-2.5 bg-[#FFCC00] text-black font-bold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4 cursor-pointer"
+            className="group w-full inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#004DE6] to-[#051036] text-white font-extrabold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4 shadow-[0_8px_25px_rgba(0,77,230,0.25)] cursor-pointer overflow-hidden"
           >
-            <span>Book a Call</span>
-            <PhoneCall size={18} className="transition-transform duration-300 group-hover:animate-shake" />
+            <span className="relative z-10">Book a Call</span>
+            <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12" />
           </button>
         </div>
       </div>
 
-      {/* BACKDROP: Set to z-[120] */}
+      {/* BACKDROP */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/40 z-[120] md:hidden backdrop-blur-[2px]" 
