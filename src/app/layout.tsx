@@ -19,7 +19,7 @@ export default function RootLayout({
   );
 }
 export const metadata = {
-  title: "Vinsou | Full-Service IT Solutions, Website & CRM Development, Social Media Ads",
+  title: "Vinsou | Your Business Growth Partner",
   description: "Vinsou is your trusted growth partner for complete software development, custom CRMs, social media management, high-converting website design, and high-ROI ad campaign handling.",
   keywords: [
     "social media manager",
@@ -32,7 +32,7 @@ export const metadata = {
     "Vinsou"
   ],
   openGraph: {
-    title: "Vinsou | Growth Partner for Web Development & Social Media Ads",
+    title: "Vinsou | Your Business Growth Partner",
     description: "Scale your business with Vinsou's expert IT solutions, custom software, CRMs, web development, and social media management.",
     url: "https://vinsou.com",
     siteName: "Vinsou",

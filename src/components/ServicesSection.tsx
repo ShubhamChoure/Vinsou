@@ -618,7 +618,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                 lg:text-[17px]
               "
             >
-              We build high-converting websites, powerful{" "}
+              We combine deep digital architecture with{" "}
               <strong
                 className="
                   font-extrabold
@@ -629,9 +629,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                   underline-offset-4
                 "
               >
-                CRM software
+                result-driven brand acceleration
               </strong>
-              , custom digital solutions, and{" "}
+              , turning traffic into loyal clients through{" "}
               <strong
                 className="
                   font-extrabold
@@ -642,10 +642,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({
                   underline-offset-4
                 "
               >
-                performance marketing
+                data-backed campaigns
               </strong>{" "}
-              strategies that help businesses attract customers,
-              streamline operations, and scale revenue.
+              and seamless user journeys designed to maximize your return on investment.
             </motion.p>
 
             {/* ==================================

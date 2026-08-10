@@ -12,15 +12,41 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Track scroll position for the minimal transparent glass effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (isOpen) document.body.style.overflow = "hidden";
     else document.body.style.overflow = "unset";
   }, [isOpen]);
 
+  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    // Looks for the pricing section or chooses the first pricing element on the page
+    const pricingElement = document.getElementById("pricing-section") || document.querySelector("section:has(button)");
+    if (pricingElement) {
+      pricingElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const navLinks = [
-    { title: "Team", href: "/team" },
-    { title: "Blog", href: "/blog" },
+    { title: "Team", href: "/team", isScroll: false },
+    { title: "Plans", href: "#plans", isScroll: true },
   ];
 
   const handleButtonClick = () => {
@@ -33,8 +59,14 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[140]">
+      {/* NAVBAR with minimal transparent scroll glass effect */}
+      <nav 
+        className={`w-full sticky top-0 z-[140] transition-all duration-300 ${
+          isScrolled 
+            ? "bg-[#FAF9F6]/85 backdrop-blur-md border-b border-black/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)]" 
+            : "bg-[#FAF9F6] border-b border-black/5"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-16 sm:h-20">
           
           {/* LOGO CONTAINER */}
@@ -70,13 +102,24 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
           <div className="hidden md:flex items-center gap-10">
             <div className="flex items-center gap-8">
               {navLinks.map((link) => (
-                <Link 
-                  key={link.title} 
-                  href={link.href} 
-                  className="text-sm font-bold text-black hover:opacity-60 transition-opacity"
-                >
-                  {link.title}
-                </Link>
+                link.isScroll ? (
+                  <a
+                    key={link.title}
+                    href={link.href}
+                    onClick={scrollToPricing}
+                    className="text-sm font-bold text-black hover:opacity-60 transition-opacity cursor-pointer"
+                  >
+                    {link.title}
+                  </a>
+                ) : (
+                  <Link 
+                    key={link.title} 
+                    href={link.href} 
+                    className="text-sm font-bold text-black hover:opacity-60 transition-opacity"
+                  >
+                    {link.title}
+                  </Link>
+                )
               ))}
             </div>
             
@@ -112,14 +155,25 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
       >
         <div className="pt-24 pb-8 px-8 flex flex-col gap-2">
           {navLinks.map((link) => (
-            <Link 
-              key={link.title} 
-              href={link.href} 
-              onClick={() => setIsOpen(false)} 
-              className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0"
-            >
-              {link.title}
-            </Link>
+            link.isScroll ? (
+              <a
+                key={link.title}
+                href={link.href}
+                onClick={scrollToPricing}
+                className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0 cursor-pointer"
+              >
+                {link.title}
+              </a>
+            ) : (
+              <Link 
+                key={link.title} 
+                href={link.href} 
+                onClick={() => setIsOpen(false)} 
+                className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0"
+              >
+                {link.title}
+              </Link>
+            )
           ))}
           
           {/* MOBILE CTA BUTTON */}

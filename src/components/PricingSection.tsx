@@ -135,7 +135,7 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
   };
 
   return (
-    <section className="relative w-full bg-[#FAF9F6] font-sans py-20 lg:py-28 overflow-hidden z-0">
+    <section id="pricing-section" className="relative w-full bg-[#FAF9F6] font-sans py-20 lg:py-28 overflow-hidden z-0">
       
       {/* Background Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFCC00]/10 rounded-full blur-[150px] pointer-events-none" />
@@ -197,7 +197,6 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
                   : "border-black/10 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-xl"
               }`}
             >
-              {/* Popular Badge */}
               {plan.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-black text-[#FFCC00] px-4 py-1.5 rounded-full text-[11px] font-extrabold tracking-widest uppercase shadow-md flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[#FFCC00] animate-pulse" />
@@ -206,7 +205,6 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
               )}
 
               <div>
-                {/* Plan Header */}
                 <div className="text-center pb-6 border-b border-black/5">
                   <h3 className="text-xl font-extrabold text-black">{plan.name}</h3>
                   <div className="mt-4 flex items-baseline justify-center gap-1">
@@ -219,7 +217,6 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
                   </div>
                 </div>
 
-                {/* Features List */}
                 <ul className="py-6 space-y-4">
                   {plan.features.map((feature, fIdx) => (
                     <li key={fIdx} className="flex items-start gap-3">
@@ -234,7 +231,6 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
                 </ul>
               </div>
 
-              {/* Card Footer */}
               <div className="pt-6 border-t border-black/5 mt-auto">
                 <p className="text-[11px] font-bold text-center text-gray-400 mb-4 italic">
                   {plan.note}
