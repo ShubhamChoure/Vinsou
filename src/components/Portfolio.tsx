@@ -7,10 +7,10 @@ const Portfolio = () => {
   const [activeTab, setActiveTab] = useState("Social Media");
   const tabs = ["Social Media", "Website Development", "Google Business Manager"];
 
-  // Mockup data for all 3 categories
+  // Mockup data updated with mob1.png as requested
   const portfolioData: Record<string, { id: number; img: string }[]> = {
     "Social Media": [
-      { id: 1, img: "/mob-1.png" },
+      { id: 1, img: "/mob1.png" },
       { id: 2, img: "/mob-2.png" },
       { id: 3, img: "/mob-3.png" },
     ],
@@ -20,7 +20,7 @@ const Portfolio = () => {
       { id: 3, img: "/web-3.png" },
     ],
     "Google Business Manager": [
-      { id: 1, img: "/mob-1.png" },
+      { id: 1, img: "/mob1.png" },
       { id: 2, img: "/mob-2.png" },
       { id: 3, img: "/mob-3.png" },
     ],
