@@ -5,43 +5,59 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { PhoneCall } from "lucide-react";
 
-// Custom Instagram Icon
+// Custom Instagram Icon (Wrapped with Link)
 const InstagramIcon = ({ className }: { className?: string }) => (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    className={className}
+  <a
+    href="https://www.instagram.com/vinsou_creatives"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram Profile"
+    className="w-[48px] h-[48px] bg-white text-black border border-black/10 rounded-full flex items-center justify-center shadow-xs transition-colors cursor-pointer hover:bg-[#FFCC00]"
   >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  </a>
 );
 
-// Official WhatsApp Icon
+// Official WhatsApp Icon (Wrapped with Link)
 const WhatsAppIcon = ({ className }: { className?: string }) => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2.2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-    className={className}
+  <a
+    href="https://wa.me/919322615918"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="WhatsApp Chat"
+    className="w-[48px] h-[48px] bg-white text-black border border-black/10 rounded-full flex items-center justify-center shadow-xs transition-colors cursor-pointer hover:bg-[#FFCC00]"
   >
-    <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
-    <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
-  </svg>
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+      <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1" />
+    </svg>
+  </a>
 );
 
 const LeafSVG = ({ className }: { className?: string }) => (
@@ -172,30 +188,16 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
                 <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
               </motion.button>
 
-              {/* SOCIAL ICONS (Instagram & WhatsApp) */}
+              {/* SOCIAL ICONS (Instagram & WhatsApp Links) */}
               <div className="flex gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.08, backgroundColor: "#FFCC00" }}
-                  whileTap={{ scale: 0.94 }}
-                  aria-label="Instagram"
-                  className="w-[48px] h-[48px] bg-white text-black border border-black/10 rounded-full flex items-center justify-center shadow-xs transition-colors cursor-pointer"
-                >
-                  <InstagramIcon className="transition-colors duration-300" />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.08, backgroundColor: "#FFCC00" }}
-                  whileTap={{ scale: 0.94 }}
-                  aria-label="WhatsApp"
-                  className="w-[48px] h-[48px] bg-white text-black border border-black/10 rounded-full flex items-center justify-center shadow-xs transition-colors cursor-pointer"
-                >
-                  <WhatsAppIcon className="transition-colors duration-300" />
-                </motion.button>
+                <InstagramIcon />
+                <WhatsAppIcon />
               </div>
             </div>
 
           </motion.div>
 
-          {/* DESKTOP FULL TEAM PHOTO */}
+          {/* DESKTOP FULL TEAM PHOTO WITH SOFT BOTTOM FADE */}
           <div className="hidden lg:flex w-full justify-end items-end z-10 relative">
             <div className="relative w-full max-w-[540px] h-[600px]">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[#FFCC00]/15 rounded-full mix-blend-multiply filter blur-[100px] pointer-events-none z-0"></div>
@@ -209,13 +211,17 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
                   aria-hidden="true"
                 />
               </div>
-              <Image
-                src="/herosection.png"
-                alt="Ads With Vinsou Team"
-                fill
-                className="object-contain object-right-bottom drop-shadow-2xl z-10"
-                priority
-              />
+              
+              {/* Team Image with CSS Mask Gradient for Bottom Fade */}
+              <div className="relative w-full h-full [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]">
+                <Image
+                  src="/herosection.png"
+                  alt="Ads With Vinsou Team"
+                  fill
+                  className="object-contain object-right-bottom drop-shadow-2xl z-10"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
