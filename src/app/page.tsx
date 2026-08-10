@@ -5,7 +5,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/ServicesSection";
 import Portfolio from "@/components/Portfolio";
-import PricingSection from "@/components/PricingSection"; // <-- Import pricing section
+import PricingSection from "@/components/PricingSection";
+import Footer from "@/components/Footer"; // <-- Import Footer
 import SplashScreen from "@/components/SplashScreen";
 
 export const CALENDLY_URL = "https://calendly.com/official-vinsou/30min";
@@ -25,8 +26,9 @@ export default function Home() {
         <Navbar onBookCall={handleBookCall} />
         <Hero onBookCall={handleBookCall} />
         <ServicesSection onBookCall={handleBookCall} />
-        <Portfolio /> {/* <-- Portfolio first */}
-        <PricingSection onBookCall={handleBookCall} /> {/* <-- Pricing Section right after Portfolio */}
+        <Portfolio />
+        <PricingSection onBookCall={handleBookCall} />
+        <Footer onBookCall={handleBookCall} /> {/* <-- Display Footer */}
       </div>
     </main>
   );
