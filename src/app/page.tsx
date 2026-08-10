@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ServicesSection from "@/components/ServicesSection";
 import Portfolio from "@/components/Portfolio";
+import PricingSection from "@/components/PricingSection"; // <-- Import pricing section
 import SplashScreen from "@/components/SplashScreen";
 
 export const CALENDLY_URL = "https://calendly.com/official-vinsou/30min";
@@ -18,15 +19,14 @@ export default function Home() {
 
   return (
     <main className="bg-[#FAF9F6] min-h-screen relative">
-      {/* Custom Video Splash Screen */}
       <SplashScreen onComplete={() => setIsLoading(false)} />
 
-      {/* Main Content (Reveals smoothly once video finishes) */}
       <div className={isLoading ? "opacity-0 pointer-events-none" : "opacity-100 transition-opacity duration-700"}>
         <Navbar onBookCall={handleBookCall} />
         <Hero onBookCall={handleBookCall} />
         <ServicesSection onBookCall={handleBookCall} />
-        <Portfolio />
+        <Portfolio /> {/* <-- Portfolio first */}
+        <PricingSection onBookCall={handleBookCall} /> {/* <-- Pricing Section right after Portfolio */}
       </div>
     </main>
   );
