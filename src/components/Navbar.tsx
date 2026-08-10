@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Menu, X, PhoneCall } from "lucide-react";
 
 interface NavbarProps {
@@ -32,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
   return (
     <>
-      {/* NAVBAR: Increased to z-[140] so it ALWAYS stays on top of the mobile drawer */}
+      {/* NAVBAR */}
       <nav className="w-full bg-[#FAF9F6] border-b border-black/5 sticky top-0 z-[140]">
         <div className="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-16 sm:h-20">
           
@@ -72,28 +73,30 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
                 <Link 
                   key={link.title} 
                   href={link.href} 
-                  className="text-sm font-bold text-[#051036] hover:opacity-60 transition-opacity"
+                  className="text-sm font-bold text-black hover:opacity-60 transition-opacity"
                 >
                   {link.title}
                 </Link>
               ))}
             </div>
             
-            {/* FANCY DESKTOP CTA BUTTON (Matched Theme) */}
-            <button
+            {/* MATCHED HERO EFFECT: Framer Motion CTA Button with Sheen Animation */}
+            <motion.button
               onClick={handleButtonClick}
-              className="group relative inline-flex items-center gap-2.5 bg-gradient-to-r from-[#004DE6] to-[#051036] text-white font-extrabold rounded-full px-7 py-3 text-sm uppercase tracking-wide shadow-[0_8px_25px_rgba(0,77,230,0.25)] hover:shadow-[0_12px_35px_rgba(0,77,230,0.4)] transition-all active:scale-95 cursor-pointer overflow-hidden"
+              whileHover={{ scale: 1.05, backgroundColor: "#F0C000", boxShadow: "0px 10px 30px rgba(255, 204, 0, 0.4)" }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative inline-flex items-center gap-2.5 bg-[#FFCC00] text-black font-extrabold rounded-full px-7 py-3 text-sm uppercase tracking-wider shadow-md cursor-pointer overflow-hidden"
             >
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              <div className="absolute inset-0 -translate-x-full bg-white/30 -skew-x-12 group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
               <span className="relative z-10">Book a Call</span>
               <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-            </button>
+            </motion.button>
           </div>
 
-          {/* Mobile Toggle: Swaps between Menu and X automatically */}
+          {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden p-1 text-[#051036] relative cursor-pointer shrink-0 transition-transform active:scale-90"
+            className="md:hidden p-1 text-black relative cursor-pointer shrink-0 transition-transform active:scale-90"
             aria-label="Toggle navigation menu"
           >
             {isOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
@@ -113,22 +116,26 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
               key={link.title} 
               href={link.href} 
               onClick={() => setIsOpen(false)} 
-              className="py-4 text-[15px] font-bold text-[#051036] border-t border-black/5 first:border-t-0"
+              className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0"
             >
               {link.title}
             </Link>
           ))}
-          {/* FANCY MOBILE CTA BUTTON */}
-          <button
+          
+          {/* MOBILE CTA BUTTON */}
+          <motion.button
             onClick={() => {
               setIsOpen(false);
               handleButtonClick();
             }}
-            className="group w-full inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#004DE6] to-[#051036] text-white font-extrabold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4 shadow-[0_8px_25px_rgba(0,77,230,0.25)] cursor-pointer overflow-hidden"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.96 }}
+            className="group relative w-full inline-flex items-center justify-center gap-2.5 bg-[#FFCC00] text-black font-extrabold rounded-full py-4 text-xs uppercase tracking-[0.1em] mt-4 shadow-sm cursor-pointer overflow-hidden"
           >
+            <div className="absolute inset-0 -translate-x-full bg-white/30 -skew-x-12 group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
             <span className="relative z-10">Book a Call</span>
             <PhoneCall size={18} className="relative z-10 transition-transform duration-300 group-hover:rotate-12" />
-          </button>
+          </motion.button>
         </div>
       </div>
 

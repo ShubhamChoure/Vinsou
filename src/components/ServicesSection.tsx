@@ -38,10 +38,10 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookCall }) => {
   return (
     <section 
       ref={containerRef} 
-      className="relative w-full bg-[#FAF9F6] font-sans py-12 sm:py-20 lg:py-28 overflow-hidden"
+      className="relative w-full bg-[#FAF9F6] font-sans py-12 sm:py-20 lg:py-28 overflow-hidden z-0"
     >
-      {/* Background Accent Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#FFCC00]/15 rounded-full blur-[100px] pointer-events-none" />
+      {/* Soft eye-friendly background accent glow using yellow tint */}
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 -translate-x-1/2 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-[#FFCC00]/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 sm:gap-14 lg:gap-16">
@@ -65,7 +65,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onBookCall }) => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                className="absolute top-4 right-4 z-20 bg-black text-[#FFCC00] px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md"
+                className="absolute top-4 right-4 z-20 bg-black text-[#FFCC00] px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-md"
               >
                 <Sparkles size={14} className="animate-pulse" />
                 <span className="text-[11px] font-black tracking-wider uppercase">Live Ranking</span>
