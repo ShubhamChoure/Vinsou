@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useRef } from "react"
+
 import { cn } from "@/lib/utils"
 
 const morphTime = 1.5
@@ -137,9 +138,8 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
   className,
 }) => (
   <div
-    style={{ filter: "url(#threshold) blur(0.6px)" }}
     className={cn(
-      "relative mx-auto h-16 w-full max-w-3xl text-center font-sans text-[40pt] leading-none font-bold md:h-24 lg:text-[6rem]",
+      "relative mx-auto h-16 w-full max-w-3xl text-center font-sans text-[40pt] leading-none font-bold filter-[url(#threshold)_blur(0.6px)] md:h-24 lg:text-[6rem]",
       className
     )}
   >
