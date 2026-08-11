@@ -14,7 +14,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Track scroll position for the minimal transparent glass effect
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -37,16 +36,15 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
     e.preventDefault();
     setIsOpen(false);
     
-    // Looks for the pricing section or chooses the first pricing element on the page
-    const pricingElement = document.getElementById("pricing-section") || document.querySelector("section:has(button)");
+    const pricingElement = document.getElementById("pricing-section");
     if (pricingElement) {
       pricingElement.scrollIntoView({ behavior: "smooth" });
     }
   };
 
+  // Team link removed; only "Plans" remains
   const navLinks = [
-    { title: "Team", href: "/team", isScroll: false },
-    { title: "Plans", href: "#plans", isScroll: true },
+    { title: "Plans", href: "#pricing-section" },
   ];
 
   const handleButtonClick = () => {
@@ -59,7 +57,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
 
   return (
     <>
-      {/* NAVBAR with minimal transparent scroll glass effect */}
       <nav 
         className={`w-full sticky top-0 z-[140] transition-all duration-300 ${
           isScrolled 
@@ -69,13 +66,11 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
       >
         <div className="max-w-7xl mx-auto px-5 md:px-12 flex items-center justify-between h-16 sm:h-20">
           
-          {/* LOGO CONTAINER */}
           <Link 
             href="/" 
             aria-label="VINSOU - Return to Homepage"
             className="flex items-center select-none group transition-opacity hover:opacity-80 py-2 max-w-[75vw] overflow-visible"
           >
-            {/* 1. 3D Emblem */}
             <div className="relative h-9 w-9 sm:h-14 sm:w-14 shrink-0 z-10">
               <Image
                 src="/site_logo.png"
@@ -86,7 +81,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
               />
             </div>
 
-            {/* 2. Text Wordmark */}
             <div className="relative h-9 w-[150px] sm:h-14 sm:w-[280px] flex items-center -ml-3 sm:-ml-8 mt-0.5 sm:mt-1.5 overflow-visible z-0">
               <Image
                 src="/site_text.png"
@@ -98,32 +92,20 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
             <div className="flex items-center gap-8">
               {navLinks.map((link) => (
-                link.isScroll ? (
-                  <a
-                    key={link.title}
-                    href={link.href}
-                    onClick={scrollToPricing}
-                    className="text-sm font-bold text-black hover:opacity-60 transition-opacity cursor-pointer"
-                  >
-                    {link.title}
-                  </a>
-                ) : (
-                  <Link 
-                    key={link.title} 
-                    href={link.href} 
-                    className="text-sm font-bold text-black hover:opacity-60 transition-opacity"
-                  >
-                    {link.title}
-                  </Link>
-                )
+                <a
+                  key={link.title}
+                  href={link.href}
+                  onClick={scrollToPricing}
+                  className="text-sm font-bold text-black hover:opacity-60 transition-opacity cursor-pointer"
+                >
+                  {link.title}
+                </a>
               ))}
             </div>
             
-            {/* MATCHED HERO EFFECT: Framer Motion CTA Button with Sheen Animation */}
             <motion.button
               onClick={handleButtonClick}
               whileHover={{ scale: 1.05, backgroundColor: "#F0C000", boxShadow: "0px 10px 30px rgba(255, 204, 0, 0.4)" }}
@@ -136,7 +118,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
             </motion.button>
           </div>
 
-          {/* Mobile Toggle */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
             className="md:hidden p-1 text-black relative cursor-pointer shrink-0 transition-transform active:scale-90"
@@ -147,7 +128,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
       </nav>
 
-      {/* MOBILE DRAWER */}
       <div 
         className={`fixed inset-x-0 top-0 bg-[#FAF9F6] z-[130] border-b border-black/10 shadow-2xl transform transition-transform duration-500 ease-in-out md:hidden ${
           isOpen ? "translate-y-0" : "-translate-y-full"
@@ -155,28 +135,16 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
       >
         <div className="pt-24 pb-8 px-8 flex flex-col gap-2">
           {navLinks.map((link) => (
-            link.isScroll ? (
-              <a
-                key={link.title}
-                href={link.href}
-                onClick={scrollToPricing}
-                className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0 cursor-pointer"
-              >
-                {link.title}
-              </a>
-            ) : (
-              <Link 
-                key={link.title} 
-                href={link.href} 
-                onClick={() => setIsOpen(false)} 
-                className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0"
-              >
-                {link.title}
-              </Link>
-            )
+            <a
+              key={link.title}
+              href={link.href}
+              onClick={scrollToPricing}
+              className="py-4 text-[15px] font-bold text-black border-t border-black/5 first:border-t-0 cursor-pointer"
+            >
+              {link.title}
+            </a>
           ))}
           
-          {/* MOBILE CTA BUTTON */}
           <motion.button
             onClick={() => {
               setIsOpen(false);
@@ -193,7 +161,6 @@ const Navbar: React.FC<NavbarProps> = ({ onBookCall }) => {
         </div>
       </div>
 
-      {/* BACKDROP */}
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/40 z-[120] md:hidden backdrop-blur-[2px]" 

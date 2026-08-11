@@ -6,7 +6,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { PhoneCall, ArrowUpRight, Mail } from "lucide-react";
 
-// Reliable SVG for Instagram
 const InstagramIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -15,7 +14,6 @@ const InstagramIcon = () => (
   </svg>
 );
 
-// Reliable SVG for WhatsApp
 const WhatsAppIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
@@ -23,7 +21,6 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-// Reliable SVG for LinkedIn
 const LinkedInIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -56,12 +53,10 @@ export default function Footer({ onBookCall }: FooterProps) {
   return (
     <footer className="relative w-full bg-black text-white font-sans pt-16 pb-12 overflow-hidden z-0 border-t border-white/10">
       
-      {/* Background Soft Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#FFCC00]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
-        {/* TOP CALL-TO-ACTION BANNER INSIDE FOOTER */}
         <div className="bg-gradient-to-r from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 sm:p-12 mb-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
           <div>
             <span className="text-[#FFCC00] text-xs font-extrabold tracking-widest uppercase">Ready to scale?</span>
@@ -85,10 +80,8 @@ export default function Footer({ onBookCall }: FooterProps) {
           </motion.button>
         </div>
 
-        {/* MAIN FOOTER GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
           
-          {/* COL 1: Brand Info */}
           <div className="space-y-4">
             <Link 
               href="/" 
@@ -151,15 +144,12 @@ export default function Footer({ onBookCall }: FooterProps) {
             </div>
           </div>
 
-          {/* COL 2: Quick Links */}
+          {/* COL 2: Quick Links (Team link removed) */}
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Navigation</h4>
             <ul className="space-y-3 text-sm text-gray-400 font-medium">
               <li>
                 <Link href="/" className="hover:text-[#FFCC00] transition-colors">Home</Link>
-              </li>
-              <li>
-                <Link href="/team" className="hover:text-[#FFCC00] transition-colors">Our Team</Link>
               </li>
               <li>
                 <a href="#pricing-section" onClick={(e) => scrollToSection(e, "pricing-section")} className="hover:text-[#FFCC00] transition-colors cursor-pointer">
@@ -169,7 +159,6 @@ export default function Footer({ onBookCall }: FooterProps) {
             </ul>
           </div>
 
-          {/* COL 3: Services */}
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Services</h4>
             <ul className="space-y-3 text-sm text-gray-400 font-medium">
@@ -181,13 +170,11 @@ export default function Footer({ onBookCall }: FooterProps) {
             </ul>
           </div>
 
-          {/* COL 4: Contact info */}
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Get in Touch</h4>
             <ul className="space-y-3 text-sm text-gray-400 font-medium">
               <li>
                 <span className="block text-xs text-gray-500 font-bold uppercase">Email Us</span>
-                {/* Mailto link configured with pre-filled subject line */}
                 <a 
                   href="mailto:official.vinsou@gmail.com?subject=Inquiry%20Regarding%20Vinsou%20Services" 
                   className="text-white hover:text-[#FFCC00] transition-colors flex items-center gap-1.5 mt-1"
@@ -212,7 +199,6 @@ export default function Footer({ onBookCall }: FooterProps) {
 
         </div>
 
-        {/* BOTTOM COPYRIGHT */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-medium gap-4">
           <p>&copy; {new Date().getFullYear()} Vinsou Creatives. All rights reserved.</p>
           <div className="flex gap-6">

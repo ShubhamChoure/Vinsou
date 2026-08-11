@@ -25,7 +25,7 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
         "2 Carousel Posts",
         "2 Stories",
         "3 Static Posts",
-        "Ads Management",
+        "Ads Boosting",
       ],
       note: "Ads Budget is separately decided.",
     },
