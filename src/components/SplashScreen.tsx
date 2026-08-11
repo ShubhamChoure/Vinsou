@@ -26,7 +26,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center overflow-hidden select-none pointer-events-auto"
         >
-          {/* DESKTOP VIDEO (Only plays on large laptop & desktop screens) */}
+          {/* DESKTOP VIDEO (Plays on large laptop & desktop screens) */}
           <video
             src="/splash-desktop.mp4"
             autoPlay
