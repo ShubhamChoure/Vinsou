@@ -38,35 +38,35 @@ export default function Portfolio() {
   };
 
   return (
-    <section id="portfolio-section" className="relative w-full bg-[#FAF9F6] py-20 lg:py-28 font-sans overflow-hidden z-0">
+    <section id="portfolio-section" className="relative w-full bg-[#FAF9F6] py-14 sm:py-20 lg:py-28 font-sans overflow-hidden z-0">
       
       {/* Ambient Background Glow Accents */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#FFCC00]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[700px] h-[300px] sm:h-[700px] bg-[#FFCC00]/10 rounded-full blur-[120px] sm:blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 className="text-[38px] sm:text-[52px] font-black text-black tracking-tight leading-tight">
-            Explore Our Recent <br />
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <h2 className="text-3xl sm:text-5xl lg:text-[52px] font-black text-black tracking-tight leading-tight">
+            Explore Our Recent <br className="hidden sm:block" />
             <span className="underline decoration-[#FFCC00] decoration-4 underline-offset-4">
               Success Stories
             </span>
           </h2>
 
-          <p className="text-gray-600 text-base sm:text-lg mt-4 font-medium">
+          <p className="text-gray-600 text-sm sm:text-lg mt-3 sm:mt-4 font-medium px-2">
             Take a look at how we craft elite digital experiences and drive scalable growth for our partners.
           </p>
 
-          {/* CUSTOM TABS SWITCHER */}
-          <div className="flex flex-wrap justify-center items-center gap-3 mt-10">
+          {/* CUSTOM TABS SWITCHER - Optimized for Mobile Horizontal Scroll */}
+          <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-3 mt-8 sm:mt-10 overflow-x-auto no-scrollbar px-4 -mx-4 sm:mx-0 sm:px-0 pb-2">
             {tabs.map((tab) => (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`flex items-center gap-2 px-6 sm:px-8 py-3.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
+                className={`flex items-center gap-2 px-5 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-extrabold whitespace-nowrap transition-all duration-300 cursor-pointer shrink-0 ${
                   activeTab === tab.name
-                    ? "bg-[#FFCC00] text-black shadow-lg scale-105 ring-2 ring-[#FFCC00]/50"
+                    ? "bg-[#FFCC00] text-black shadow-md scale-105 ring-2 ring-[#FFCC00]/50"
                     : "bg-white text-gray-600 border border-black/10 hover:text-black hover:border-black/30 shadow-xs"
                 }`}
               >
@@ -85,7 +85,7 @@ export default function Portfolio() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 items-center justify-center"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 items-center justify-center"
           >
             {portfolioData[activeTab]?.map((item, idx) => (
               <motion.div
