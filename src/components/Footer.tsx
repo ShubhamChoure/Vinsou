@@ -176,10 +176,10 @@ export default function Footer({ onBookCall }: FooterProps) {
               <li>
                 <span className="block text-xs text-gray-500 font-bold uppercase">Email Us</span>
                 <a 
-                  href="mailto:official.vinsou@gmail.com?subject=Inquiry%20Regarding%20Vinsou%20Services" 
+                  href="mailto:contact@vinsou.com?subject=Inquiry%20Regarding%20Vinsou%20Services" 
                   className="text-white hover:text-[#FFCC00] transition-colors flex items-center gap-1.5 mt-1"
                 >
-                  <Mail size={14} /> official.vinsou@gmail.com <ArrowUpRight size={14} />
+                  <Mail size={14} /> contact@vinsou.com <ArrowUpRight size={14} />
                 </a>
               </li>
               <li className="pt-2">
