@@ -6,7 +6,17 @@ const sansFont = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
 });
-
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Vinsou",
+  url: "https://vinsou.com",
+  sameAs: [
+    "https://www.youtube.com/@Vinsou-Solutions",
+    "https://www.instagram.com/vinsou_creatives",
+    "https://www.linkedin.com/company/vinsou/",
+  ],
+};
 export default function RootLayout({
   children,
 }: {
