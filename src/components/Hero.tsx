@@ -120,8 +120,8 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
       <div className="lg:hidden absolute inset-0 pointer-events-none z-0 overflow-hidden flex items-end justify-end">
         <div className="relative w-full h-[75%] opacity-[0.08] filter grayscale contrast-125">
           <Image
-            src="/herosection.png"
-            alt=""
+            src="/Vinsou_Founders.webp"
+            alt="Vinsou_Founders"
             fill
             className="object-contain object-right-bottom scale-105"
             priority
@@ -204,8 +204,8 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
               
               <div className="absolute -right-2 bottom-0 w-full h-full opacity-20 blur-[8px] pointer-events-none select-none z-0">
                 <Image
-                  src="/herosection.png"
-                  alt=""
+                  src="/Vinsou_Founders.webp"
+                  alt="/Vinsou_Founders"
                   fill
                   className="object-contain object-right-bottom scale-[1.03] filter brightness-0"
                   aria-hidden="true"
@@ -215,8 +215,8 @@ const Hero: React.FC<HeroProps> = ({ onBookCall }) => {
               {/* Team Image with CSS Mask Gradient for Bottom Fade */}
               <div className="relative w-full h-full [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)]">
                 <Image
-                  src="/herosection.png"
-                  alt="Ads With Vinsou Team"
+                  src="/Vinsou_Founders.webp"
+                  alt="Vinsou_Founders"
                   fill
                   className="object-contain object-right-bottom drop-shadow-2xl z-10"
                   priority

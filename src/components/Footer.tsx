@@ -29,6 +29,13 @@ const LinkedInIcon = () => (
   </svg>
 );
 
+const YouTubeIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+  </svg>
+);
+
 interface FooterProps {
   onBookCall?: () => void;
 }
@@ -52,11 +59,9 @@ export default function Footer({ onBookCall }: FooterProps) {
 
   return (
     <footer className="relative w-full bg-black text-white font-sans pt-16 pb-12 overflow-hidden z-0 border-t border-white/10">
-      
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#FFCC00]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        
         <div className="bg-gradient-to-r from-neutral-900 to-neutral-950 border border-white/10 rounded-3xl p-8 sm:p-12 mb-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl">
           <div>
             <span className="text-[#FFCC00] text-xs font-extrabold tracking-widest uppercase">Ready to scale?</span>
@@ -81,7 +86,6 @@ export default function Footer({ onBookCall }: FooterProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-          
           <div className="space-y-4">
             <Link 
               href="/" 
@@ -89,23 +93,10 @@ export default function Footer({ onBookCall }: FooterProps) {
               className="flex items-center select-none group transition-opacity hover:opacity-80 py-2 overflow-visible"
             >
               <div className="relative h-10 w-10 shrink-0 z-10 filter brightness-0 invert">
-                <Image
-                  src="/site_logo.png"
-                  alt="VINSOU Emblem"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+                <Image src="/site_logo.png" alt="VINSOU Emblem" fill className="object-contain" priority />
               </div>
-
               <div className="relative h-10 w-[160px] flex items-center -ml-2 mt-1 overflow-visible z-0 filter brightness-0 invert">
-                <Image
-                  src="/site_text.png"
-                  alt="VINSOU"
-                  fill
-                  className="object-contain object-left scale-[1.8] origin-left"
-                  priority
-                />
+                <Image src="/site_text.png" alt="VINSOU" fill className="object-contain object-left scale-[1.8] origin-left" priority />
               </div>
             </Link>
 
@@ -114,48 +105,26 @@ export default function Footer({ onBookCall }: FooterProps) {
             </p>
 
             <div className="flex items-center gap-3 pt-2">
-              <a
-                href="https://www.instagram.com/vinsou_creatives"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all"
-              >
+              <a href="https://www.instagram.com/vinsou_creatives" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all">
                 <InstagramIcon />
               </a>
-              <a
-                href="https://wa.me/919322615918"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp"
-                className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all"
-              >
+              <a href="https://wa.me/919322615918" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all">
                 <WhatsAppIcon />
               </a>
-              <a
-                href="https://www.linkedin.com/company/vinsou/?viewAsMember=true"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all"
-              >
+              <a href="https://www.linkedin.com/company/vinsou/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all">
                 <LinkedInIcon />
+              </a>
+              <a href="https://www.youtube.com/@Vinsou-Solutions" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-10 h-10 rounded-full bg-neutral-900 border border-white/10 flex items-center justify-center text-white hover:bg-[#FFCC00] hover:text-black transition-all">
+                <YouTubeIcon />
               </a>
             </div>
           </div>
 
-          {/* COL 2: Quick Links (Team link removed) */}
           <div>
             <h4 className="text-white font-extrabold text-sm uppercase tracking-wider mb-5">Navigation</h4>
             <ul className="space-y-3 text-sm text-gray-400 font-medium">
-              <li>
-                <Link href="/" className="hover:text-[#FFCC00] transition-colors">Home</Link>
-              </li>
-              <li>
-                <a href="#pricing-section" onClick={(e) => scrollToSection(e, "pricing-section")} className="hover:text-[#FFCC00] transition-colors cursor-pointer">
-                  Pricing Plans
-                </a>
-              </li>
+              <li><Link href="/" className="hover:text-[#FFCC00] transition-colors">Home</Link></li>
+              <li><a href="#pricing-section" onClick={(e) => scrollToSection(e, "pricing-section")} className="hover:text-[#FFCC00] transition-colors cursor-pointer">Pricing Plans</a></li>
             </ul>
           </div>
 
@@ -175,10 +144,7 @@ export default function Footer({ onBookCall }: FooterProps) {
             <ul className="space-y-3 text-sm text-gray-400 font-medium">
               <li>
                 <span className="block text-xs text-gray-500 font-bold uppercase">Email Us</span>
-                <a 
-                  href="mailto:contact@vinsou.com?subject=Inquiry%20Regarding%20Vinsou%20Services" 
-                  className="text-white hover:text-[#FFCC00] transition-colors flex items-center gap-1.5 mt-1"
-                >
+                <a href="mailto:contact@vinsou.com" className="text-white hover:text-[#FFCC00] transition-colors flex items-center gap-1.5 mt-1">
                   <Mail size={14} /> contact@vinsou.com <ArrowUpRight size={14} />
                 </a>
               </li>
@@ -196,7 +162,6 @@ export default function Footer({ onBookCall }: FooterProps) {
               </li>
             </ul>
           </div>
-
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-medium gap-4">
@@ -206,7 +171,6 @@ export default function Footer({ onBookCall }: FooterProps) {
             <span className="hover:text-gray-400 transition-colors">Terms of Service</span>
           </div>
         </div>
-
       </div>
     </footer>
   );
