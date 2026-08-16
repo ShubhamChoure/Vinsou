@@ -31,7 +31,7 @@ export default function PricingSection({ onBookCall }: PricingSectionProps) {
     },
     {
       name: "Professional",
-      price: "₹19,499",
+      price: "₹19,999",
       period: "/ M",
       badge: "Most Popular",
       popular: true,
